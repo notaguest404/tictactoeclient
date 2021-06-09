@@ -29,8 +29,6 @@ class Login extends Component {
       password: this.state.password
     };
 
-    console.log(user)
-
     axios.post('https://tictactoe-lb-web.herokuapp.com/login', user)
       .then(res => {
         if (res.data.code === 200) {
