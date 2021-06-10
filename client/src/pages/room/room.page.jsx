@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 // CROSS = 1 --> CIRCLE = 2
 import "./room.styles.scss";
 import Button from "../../components/button/button.component";
-import Github from "../../components/github/github.component";
 import ClickToCopy from "../../components/click-to-copy/click-to-copy.component";
 import { makeRoomId } from "../../utils";
 import Header from "../../components/header"

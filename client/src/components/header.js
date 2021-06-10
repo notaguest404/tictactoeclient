@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import { Menu } from 'antd';
+import { Menu, Button } from 'antd';
 import {HomeOutlined, UserOutlined, PlayCircleOutlined, LogoutOutlined, SettingOutlined} from '@ant-design/icons';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import logo from "../assets/images/logo.png";
+import Cookies from 'js-cookie';
 
 const { SubMenu } = Menu;
 
 class Header extends Component {
   state = {
     current: 'home',
+    navigate: false
   };
 
   handleClick = e => {
@@ -16,8 +18,20 @@ class Header extends Component {
     this.setState({ current: e.key });
   };
 
+  logout = () => {
+    console.log("remover")
+    Cookies.remove("session");
+    Cookies.remove("session_name");
+    this.setState({navigate: true});
+  };
+
   render() {
     const { current } = this.state;
+
+    const { navigate } = this.state;
+    if (navigate) {
+      return <Redirect to="/" push={true} />;
+    }
     return (
       <div>
         <Menu onClick={this.handleClick} selectedKeys={[current]} mode="horizontal"
@@ -44,13 +58,7 @@ class Header extends Component {
             How to play
             <Link to="/howtoplay" />
           </Menu.Item>
-          <Menu.Item
-            key="logout"
-            icon={<LogoutOutlined />}
-            style={{float:'right'}}>
-            Logout
-            <Link to="/" />
-          </Menu.Item>
+            <Button style={{float:'right'}} onClick={(e) => { this.logout(e)}}><LogoutOutlined />Logout</Button>
           <Menu.Item
             key="settings"
             icon={<SettingOutlined />}

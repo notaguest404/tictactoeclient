@@ -7,6 +7,12 @@
   width: 100vw;
 }
 
+.avatar-uploader > .ant-upload {
+  width: 300px;
+  height: 250px;
+  margin-top: 20px
+}
+
 .card-container {
   background-color: #0097A7;
   border-radius: 5px;
@@ -46,6 +52,7 @@ button.primary {
   font-weight: 500;
   margin-right: 2px;
   padding: 10px 25px;
+  height: 42px;
 }
 
 button.primary.ghost {

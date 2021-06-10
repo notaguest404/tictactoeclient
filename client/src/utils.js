@@ -1,3 +1,13 @@
+import * as Cookies from "js-cookie";
+import React from "react";
+
+export const setSessionCookie = (name, email) => {
+  Cookies.remove("session_name");
+  Cookies.remove("session");
+  Cookies.set("session_name", name, { expires: 60 });
+  Cookies.set("session", email, { expires: 60 });
+};
+
 export const makeRoomId = (length) => {
   var result = "";
   var characters =

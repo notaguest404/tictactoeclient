@@ -5,6 +5,8 @@ import axios from 'axios';
 import logo from '../assets/images/logo.png';
 import { Row, Col } from 'antd';
 import {Link} from "react-router-dom";
+import { SessionContext, getSessionCookie, setSessionCookie } from "../utils"
+import Cookies from "js-cookie";
 
 class Login extends Component {
   constructor(props) {
@@ -30,10 +32,16 @@ class Login extends Component {
     };
 
     axios.post('https://tictactoe-lb-web.herokuapp.com/login', user)
-      .then(res => {
+    .then(res => {
         if (res.data.code === 200) {
+          const username = res.data.results[0].username
+          const session = res.data.results[0].id
+
+          setSessionCookie(username, session);
+
           this.props.history.push('/home');
         } else {
+          alert(res.data.message)
           throw new Error(res.error);
         }
       })

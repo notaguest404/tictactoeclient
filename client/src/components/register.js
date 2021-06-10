@@ -33,12 +33,8 @@ class Register extends Component {
         email: this.state.email,
         password: this.state.password
       };
-
-      console.log(user)
-
       axios.post('https://tictactoe-lb-web.herokuapp.com/register', user)
         .then(res => {
-          console.log(res)
           if (res.data.code === 200) {
             this.props.history.push('/');
           } else {
